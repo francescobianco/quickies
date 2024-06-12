@@ -20,8 +20,5 @@ try {
     exit();
 }
 
-
-
 $GLOBALS["con"] = $pdo;
-
-?>
+$PHP_SELF = $_SERVER['PHP_SELF'];

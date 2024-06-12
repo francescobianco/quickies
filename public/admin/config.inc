@@ -9,11 +9,14 @@ $srv_user = "quickies_admin";
 $srv_pass = "";
 $srv_db = "quickies";
 
-$con = mysqli_connect($srv_host, $srv_user, $srv_pass, $srv_db) or die("Invalid server or user". mysql_error());
-
-if (mysqli_connect_errno($con))
-{
-    echo "Failed to connect to MySQL:" . mysqli_connect_error();
+try {
+    $pdo = new PDO("sqlite:/var/quickies/quickies.db");
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, 0);
+} catch (PDOException $e) {
+    echo "Errore di connessione al database: " . $e->getMessage();
+    exit();
 }
 
-?>
+$GLOBALS["con"] = $pdo;
+$PHP_SELF = $_SERVER['PHP_SELF'];

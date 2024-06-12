@@ -63,11 +63,11 @@ class Category extends DBObject {
         $query .= " ORDER BY C.name";        
         $con = $GLOBALS["con"];
         $success = null;
-        $result = mysqli_query($con, $query, $success) or die("Error in query: ". mysql_error());
+        $result = database_query($con, $query, $success) or die("Error in query: ". mysql_error());
         
         $a = array();
 
-        while (list($cat_id, $cat_name) = mysqli_fetch_row($result)) {
+        while (list($cat_id, $cat_name) = database_fetch_row($result)) {
             $c = new Category();
             $c->id = $cat_id;
             $c->name = $cat_name;
@@ -128,8 +128,8 @@ class Note extends DBObject {
         $query = "SELECT COUNT(*) FROM ".Note::$table_name;
         $con = $GLOBALS["con"];
         $success = null;
-        $result = mysqli_query($con, $query, $success) or die("Error in query: ". mysql_error());
-        while (list($count) = mysqli_fetch_row($result)) {
+        $result = database_query($con, $query, $success) or die("Error in query: ". mysql_error());
+        while (list($count) = database_fetch_row($result)) {
             return $count;
         }
         return 0;
@@ -209,7 +209,7 @@ class Note extends DBObject {
         
         $a = array();
     
-        while (list($note_id, $note_title, $note_text, $note_timestamp, $note_category_id, $category_id) = mysqli_fetch_row($result)) {
+        while (@list($note_id, $note_title, $note_text, $note_timestamp, $note_category_id, $category_id) = database_fetch_row($result)) {
             $n = new Note();
             $n->id = $note_id;
             $n->title = $note_title;

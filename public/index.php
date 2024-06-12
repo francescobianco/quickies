@@ -6,9 +6,9 @@ header("Content-Type: text/html; charset=utf-8");
 include_once "config.inc";
 include_once "logic.php";
 
-$req_note_id = (int) $_GET['id'];
-$req_cat_id = (int) $_GET['cat'];
-$req_search_string = $_POST['search_string'];
+$req_note_id = $_GET['id'] ?? null;
+$req_cat_id = $_GET['cat'] ?? null;
+$req_search_string = $_POST['search_string'] ?? null;
 
 $display_mode = 'categories';
 

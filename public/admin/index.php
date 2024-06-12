@@ -4,15 +4,15 @@ header("Content-Type: text/html; charset=utf-8");
 include_once "config.inc";
 include_once "../logic.php";
 
-$action = $_REQUEST['action'];
-$req_note_id = (int) $_REQUEST['id'];
-$req_cat_id = (int) $_REQUEST['cat'];
-$req_cat_name = $_REQUEST['cat_name'];
-$req_note_title = $_REQUEST['note_title'];
-$req_note_text = $_REQUEST['note_text'];
-$req_confirm_delete = $_REQUEST['confirm_delete'];
-$req_cancel_delete = $_REQUEST['cancel_delete'];
-$req_search_string = $_REQUEST['search_string'];
+$action = $_REQUEST['action'] ?? null;
+$req_note_id = $_REQUEST['id'] ?? null;
+$req_cat_id = $_REQUEST['cat'] ?? null;
+$req_cat_name = $_REQUEST['cat_name'] ?? null;
+$req_note_title = $_REQUEST['note_title'] ?? null;
+$req_note_text = $_REQUEST['note_text'] ?? null;
+$req_confirm_delete = $_REQUEST['confirm_delete'] ?? null;
+$req_cancel_delete = $_REQUEST['cancel_delete'] ?? null;
+$req_search_string = $_REQUEST['search_string'] ?? null;
 
 $display_mode = 'notes';
 

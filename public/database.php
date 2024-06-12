@@ -13,7 +13,7 @@ function database_insert_id($pdo)
     return $pdo->lastInsertId();
 }
 
-function mysqli_fetch_row($result)
+function database_fetch_row($result)
 {
     return $result->fetch();
 }
