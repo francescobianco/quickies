@@ -91,7 +91,7 @@ if($display_mode == 'categories') {
     echo "<table id=\"categoryEdit\">\n";
     echo "<form method=\"post\" action=\"".$action_link."\">\n";
     echo "<tr>\n";
-    echo "<td><input type='text' name='cat_name' value=\"".htmlspecialchars($c->name)."\" /></td>\n";
+    echo "<td><input type='text' name='cat_name' value=\"".htmlspecialchars($c->name ?? '')."\" /></td>\n";
     echo "<td><input type='submit' class='submit' value='".htmlspecialchars($button_title)."' /></td>\n";
     echo "</tr>\n";
     echo "</form>\n";    
@@ -246,8 +246,8 @@ if($display_mode == 'categories') {
 
         echo "<tr><th>title</th>";
 
-        echo "<td><input type=\"text\" size=\"93\" name=\"note_title\" value=\"".htmlspecialchars($n->title)."\" /></td>\n";
-        echo "<tr><th>text</th><td><textarea rows=20 cols=80 wrap=\"off\" name=\"note_text\">".$n->text."</textarea></td>\n";
+        echo "<td><input type=\"text\" size=\"93\" name=\"note_title\" value=\"".htmlspecialchars($n->title ?? '')."\" /></td>\n";
+        echo "<tr><th>text</th><td><textarea rows=20 cols=80 wrap=\"off\" name=\"note_text\">".($n->text ?? '')."</textarea></td>\n";
         echo "<tr><th></th><td><input type=\"submit\" class=\"submit\" name=\"submit\" value=\"Submit\"></td>\n";
         echo "</form>\n";
         

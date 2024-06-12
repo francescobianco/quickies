@@ -17,7 +17,7 @@ class Category extends DBObject {
         $query = "DELETE FROM ".Category::$table_name." WHERE id = ".$this->id." LIMIT 1";
         $success = null;
         $con = $GLOBALS["con"];
-        $result = mysqli_query($con, $query, $success) or die("mysql_error in delete: <b>".$query."</b> ". mysql_error());
+        $result = database_query($con, $query, $success) or die("mysql_error in delete: <b>".$query."</b> ". mysql_error());
         return 1;
     }
     
@@ -38,8 +38,8 @@ class Category extends DBObject {
     }
     
     public function update($req_name) {
-
-        $safe_req_name = mysql_real_escape_string(stripslashes($req_name));
+        $con = $GLOBALS["con"];
+        $safe_req_name = database_real_escape_string($con, stripslashes($req_name));
 
     	$query = "UPDATE ".Category::$table_name." SET name = '".$safe_req_name."' WHERE id = ".$this->id." LIMIT 1";
 
@@ -49,7 +49,7 @@ class Category extends DBObject {
 
         $con = $GLOBALS["con"];
         $success = null;
-    	$result = mysqli_query($con, $query, $success) or die("mysql_error in update: <b>".$query."</b> ". mysql_error());
+    	$result = database_query($con, $query, $success) or die("mysql_error in update: <b>".$query."</b> ". mysql_error());
     }
     
     public static function AllObjects($where_clause=null) {
@@ -103,7 +103,7 @@ class Note extends DBObject {
         $query = "DELETE FROM ".Note::$table_name." WHERE id = ".$this->id." LIMIT 1";
         $success = null;
         $con = $GLOBALS["con"];
-        $result = mysqli_query($con, $query, $success) or die("mysql_error in delete: <b>".$query."</b> ". mysql_error());
+        $result = database_query($con, $query, $success) or die("mysql_error in delete: <b>".$query."</b> ". mysql_error());
         return 1;
     }
     
