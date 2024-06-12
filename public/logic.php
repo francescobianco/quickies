@@ -1,6 +1,7 @@
 <?php
 
-require_once('markdown.php');
+require_once 'markdown.php';
+require_once 'database.php';
 
 class DBObject {
     
@@ -31,9 +32,9 @@ class Category extends DBObject {
         
         $query = "INSERT INTO ".Category::$table_name." (name) VALUES ('".$name_param_safe."')";
         
-    	$result = mysqli_query($con, $query, $success) or die("mysql_error in insert: ". mysql_error());
+    	$result = database_query($con, $query, $success) or die("mysql_error in insert: ". mysql_error());
     	
-    	return mysqli_insert_id($con);
+    	return database_insert_id($con);
     }
     
     public function update($req_name) {
@@ -166,11 +167,11 @@ class Note extends DBObject {
 
         $con = $GLOBALS["con"];
         $success = null;
-        $result = mysqli_query($con, $query, $success) or die("Error in query: ". mysql_error());
+        $result = database_query($con, $query, $success) or die("Error in query: ". mysql_error());
         
         $a = array();
     
-        while (list($note_id, $note_title, $note_text, $note_timestamp, $note_category_id, $category_id, $category_name) = mysqli_fetch_row($result)) {
+        while (list($note_id, $note_title, $note_text, $note_timestamp, $note_category_id, $category_id, $category_name) = database_fetch_row($result)) {
             $n = new Note();
             $n->id = $note_id;
             $n->title = $note_title;
@@ -204,7 +205,7 @@ class Note extends DBObject {
         
         $con = $GLOBALS["con"];
         $success = null;
-        $result = mysqli_query($con, $query, $success) or die("Error in query: ". mysql_error());
+        $result = database_query($con, $query, $success) or die("Error in query: ". mysql_error());
         
         $a = array();
     

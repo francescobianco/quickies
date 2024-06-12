@@ -65,3 +65,5 @@ INSERT INTO q_note (category_id, title, text) VALUES (4, 'Calculus Note', 'This 
 -- Populate the FTS table with existing data
 INSERT INTO q_note_fts (text)
 SELECT text FROM q_note;
+
+
