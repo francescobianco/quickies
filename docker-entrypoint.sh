@@ -40,5 +40,5 @@ echo "ciao\n";
 
 fi
 
-echo "[webrequest] Run main process..."
+echo "[quickies] Run main process..."
 docker-php-entrypoint "$@"

@@ -1,0 +1,6 @@
+{
+  "name": "yafb/quickies",
+  "require": {
+    "michelf/php-markdown": "^2.0"
+  }
+}

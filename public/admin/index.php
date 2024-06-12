@@ -1,8 +1,12 @@
-<?ob_start();
+<?php
+
+ob_start();
 
 header("Content-Type: text/html; charset=utf-8");
-include_once "config.inc";
-include_once "../logic.php";
+
+require_once "../../vendor/autoload.php";
+require_once "../../src/admin.config.php";
+require_once "../../src/logic.php";
 
 $action = $_REQUEST['action'] ?? null;
 $req_note_id = $_REQUEST['id'] ?? null;

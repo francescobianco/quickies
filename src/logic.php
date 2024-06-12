@@ -1,6 +1,5 @@
 <?php
 
-require_once 'markdown.php';
 require_once 'database.php';
 
 class DBObject {

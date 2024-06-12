@@ -1,5 +1,5 @@
 services:
-  webrequest:
+  quickies:
     build: .
     image: yafb/quickies
     env_file:

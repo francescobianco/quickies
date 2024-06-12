@@ -1,10 +1,11 @@
 <?php
 
-
 header("Content-Type: text/html; charset=utf-8");
 
-include_once "config.inc";
-include_once "logic.php";
+require_once "../vendor/autoload.php";
+require_once "../src/config.php";
+require_once "../src/logic.php";
+require_once "../src/markdown.php";
 
 $req_note_id = $_GET['id'] ?? null;
 $req_cat_id = $_GET['cat'] ?? null;

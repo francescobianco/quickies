@@ -1,7 +1,5 @@
 <?php
 
-include_once "markdown.php";
-
 $title_faq = "Quickies";
 $footer_text = "<a href=\"https://github.com/nst/Quickies\">Quickies</a> - © 2011 seriot.ch - <a href=\"http://seriot.ch/contact.php\">contact</a>";
 
