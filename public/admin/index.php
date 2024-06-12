@@ -7,12 +7,12 @@ include_once "../logic.php";
 $action = $_REQUEST['action'] ?? null;
 $req_note_id = $_REQUEST['id'] ?? null;
 $req_cat_id = $_REQUEST['cat'] ?? null;
-$req_cat_name = $_REQUEST['cat_name'] ?? null;
-$req_note_title = $_REQUEST['note_title'] ?? null;
-$req_note_text = $_REQUEST['note_text'] ?? null;
+$req_cat_name = $_REQUEST['cat_name'] ?? '';
+$req_note_title = $_REQUEST['note_title'] ?? '';
+$req_note_text = $_REQUEST['note_text'] ?? '';
 $req_confirm_delete = $_REQUEST['confirm_delete'] ?? null;
 $req_cancel_delete = $_REQUEST['cancel_delete'] ?? null;
-$req_search_string = $_REQUEST['search_string'] ?? null;
+$req_search_string = $_REQUEST['search_string'] ?? '';
 
 $display_mode = 'notes';
 

@@ -28,7 +28,7 @@ class Category extends DBObject {
         if($name_param == null) return;
         
         $con = $GLOBALS["con"];
-        $name_param_safe = mysqli_real_escape_string($con, stripslashes($name_param));
+        $name_param_safe = database_real_escape_string($con, stripslashes($name_param));
         
         $query = "INSERT INTO ".Category::$table_name." (name) VALUES ('".$name_param_safe."')";
         
@@ -110,9 +110,9 @@ class Note extends DBObject {
     public function update($req_cat_id, $req_note_title, $req_note_text) {
 
         $con = $GLOBALS["con"];
-        $safe_cat_id = mysqli_real_escape_string($con, (int)$req_cat_id);
-        $safe_note_title = mysqli_real_escape_string($con, stripslashes($req_note_title));
-        $safe_note_text = mysqli_real_escape_string($con, stripslashes($req_note_text));
+        $safe_cat_id = database_real_escape_string($con, (int)$req_cat_id);
+        $safe_note_title = database_real_escape_string($con, stripslashes($req_note_title));
+        $safe_note_text = database_real_escape_string($con, stripslashes($req_note_text));
 
     	$query = "UPDATE ".Note::$table_name." SET title = '".$safe_note_title."', text = '".$safe_note_text."', category_id = '".$safe_cat_id."' WHERE id = ".$this->id." LIMIT 1";
 
@@ -121,7 +121,7 @@ class Note extends DBObject {
         }
         
         $success = null;
-    	$result = mysqli_query($con, $query, $success) or die("mysql_error in update: <b>".$query."</b> ". mysql_error());
+    	$result = database_query($con, $query, $success) or die("mysql_error in update: <b>".$query."</b> ". mysql_error());
     }
 
     public static function AllObjectsCount() {
@@ -139,16 +139,16 @@ class Note extends DBObject {
         if($req_cat_id == null || $req_title == null || $req_text == null) return;
         
         $con = $GLOBALS["con"];
-        $safe_cat_id = mysqli_real_escape_string($con, (int)$req_cat_id);
-        $safe_title = mysqli_real_escape_string($con, stripslashes($req_title));
-        $safe_text = mysqli_real_escape_string($con, stripslashes($req_text));
+        $safe_cat_id = database_real_escape_string($con, (int)$req_cat_id);
+        $safe_title = database_real_escape_string($con, stripslashes($req_title));
+        $safe_text = database_real_escape_string($con, stripslashes($req_text));
         
         $query = "INSERT INTO ".Note::$table_name." (category_id, title, text) VALUES ('".$safe_cat_id."', '".$safe_title."', '".$safe_text."')";
         
         $success = null;
-    	$result = mysqli_query($con, $query, $success) or die("mysql_error in insert: ". mysql_error());
+    	$result = database_query($con, $query, $success) or die("mysql_error in insert: ". mysql_error());
     	    	
-    	return mysqli_insert_id($con);
+    	return database_insert_id($con);
     }
     
     public static function AllObjects($where_clause=null, $order_clause=null, $limit=0) {
@@ -239,7 +239,7 @@ class Note extends DBObject {
     public static function NoteWithId($id) {
         $notes = Note::NotesWithId($id);
         
-        $n = $notes[0];
+        $n = $notes[0] ?? null;
         
         if($n) return $n;
         
@@ -254,11 +254,11 @@ class Note extends DBObject {
         
         $con = $GLOBALS["con"];
         $success = null;
-        $result = mysqli_query($con, $query) or die("Error in query: ". mysql_error());
+        $result = database_query($con, $query) or die("Error in query: ". mysql_error());
         
         $a = array();
     
-        while (list($note_id, $note_title, $note_text, $note_timestamp, $note_category_id) = mysqli_fetch_row($result)) {
+        while (list($note_id, $note_title, $note_text, $note_timestamp, $note_category_id) = database_fetch_row($result)) {
             $n = new Note();
             $n->id = $note_id;
             $n->title = $note_title;

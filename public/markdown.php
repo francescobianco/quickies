@@ -1163,6 +1163,10 @@ class Markdown_Parser {
 		$tree_char_em = false;
 		
 		while (1) {
+            if (empty($this->em_strong_prepared_relist["$em$strong"])) {
+                break;
+            }
+
 			#
 			# Get prepared regular expression for seraching emphasis tokens
 			# in current context.
