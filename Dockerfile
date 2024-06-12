@@ -21,8 +21,9 @@ RUN a2enmod rewrite
 
 COPY docker-entrypoint.sh /usr/local/bin/quickies-entrypoint
 COPY public/ /var/www/html/public/
-#COPY vendor/ /var/www/html/vendor/
-#COPY webrequest.php webrequest-*.php /var/www/html/
+COPY src/ /var/www/html/src/
+COPY vendor/ /var/www/html/vendor/
+
 RUN chmod +x /usr/local/bin/quickies-entrypoint
 
 VOLUME /var/quickies

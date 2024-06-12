@@ -53,17 +53,22 @@ CREATE VIRTUAL TABLE q_category_fts USING fts5(name);
 INSERT INTO q_category_fts (name)
 SELECT name FROM q_category;
 
+-- Insert demo categories
+INSERT INTO q_category (name) VALUES ('Physics');
+INSERT INTO q_category (name) VALUES ('Programming');
+INSERT INTO q_category (name) VALUES ('Mechanical Engineering');
 
+-- Insert demo notes for each category
+INSERT INTO q_note (category_id, title, text) VALUES (1, 'Physics Note 1', 'This is the first note about physics.');
+INSERT INTO q_note (category_id, title, text) VALUES (1, 'Physics Note 2', 'This is the second note about physics.');
+INSERT INTO q_note (category_id, title, text) VALUES (2, 'Programming Note 1', 'This is the first note about programming.');
+INSERT INTO q_note (category_id, title, text) VALUES (2, 'Programming Note 2', 'This is the second note about programming.');
+INSERT INTO q_note (category_id, title, text) VALUES (3, 'Mechanical Engineering Note 1', 'This is the first note about mechanical engineering.');
+INSERT INTO q_note (category_id, title, text) VALUES (3, 'Mechanical Engineering Note 2', 'This is the second note about mechanical engineering.');
 
-
--- Insert demo records into q_note
-INSERT INTO q_note (category_id, title, text) VALUES (1, 'Physics Note', 'This is a note about physics.');
-INSERT INTO q_note (category_id, title, text) VALUES (2, 'Programming Note', 'This is a note about programming.');
-INSERT INTO q_note (category_id, title, text) VALUES (3, 'Mechanical Engineering Note', 'This is a note about mechanical engineering.');
-INSERT INTO q_note (category_id, title, text) VALUES (4, 'Calculus Note', 'This is a note about calculus.');
-
--- Populate the FTS table with existing data
+-- Populate the FTS table with new data
 INSERT INTO q_note_fts (text)
 SELECT text FROM q_note;
 
-
+INSERT INTO q_category_fts (name)
+SELECT name FROM q_category;

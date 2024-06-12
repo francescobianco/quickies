@@ -18,7 +18,7 @@ try {
   exit();
 }
 
-$pdo->exec(file_get_contents("/var/www/html/public/quickies.sql"));
+$pdo->exec(file_get_contents("/var/www/html/src/quickies.sql"));
 
 // Esecuzione della query SELECT
 $query = "SELECT * FROM q_note";
