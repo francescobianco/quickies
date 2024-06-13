@@ -1,6 +1,7 @@
 <?php
 
 require_once 'database.php';
+require_once 'hooks.php';
 
 class DBObject {
     
@@ -107,6 +108,7 @@ class Note extends DBObject {
     }
     
     public function update($req_cat_id, $req_note_title, $req_note_text) {
+        list($req_cat_id, $req_note_title, $req_note_text) = hook_note_before_save(func_get_args());
 
         $con = $GLOBALS["con"];
         $safe_cat_id = database_real_escape_string($con, (int)$req_cat_id);

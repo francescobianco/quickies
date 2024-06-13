@@ -1,4 +1,6 @@
 
+build:
+	@docker compose build quickies
 
 start:
 	@docker compose up -d --build --force-recreate --remove-orphans
